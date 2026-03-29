@@ -10,11 +10,7 @@ const contador = document.querySelector("#contador");
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("La página ha cargado");
-    init();
-});
-
-// Función para inicializar los eventos y la lógica de la aplicación
-function init() {
+    ponercategoria();
     botonAleatorio.forEach((boton) => {
         boton.addEventListener("click", () => {
             console.log("Botón aleatorio clicado");
@@ -25,7 +21,7 @@ function init() {
     botonCopiar.addEventListener("click", () => {
         console.log("Botón copiar clicado");
     });
-};
+});
 
 // Función para obtener un chiste aleatorio de la API de Chuck Norris
 function chisteRandom(textoChiste) {
@@ -41,6 +37,20 @@ function chisteRandom(textoChiste) {
         });
 
 }
+
+function ponercategoria() {
+    fetch("https://api.chucknorris.io/jokes/categories")
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Categorías obtenidas:", data);
+            data.forEach((categoria) => {
+                const option = document.createElement("option");
+                option.value = categoria;
+                option.textContent = categoria;
+                selectCategoria.appendChild(option);
+            });
+        })
+};
 
 // Función para actualizar el contador de chistes obtenidos
 function actualizarContador() {
