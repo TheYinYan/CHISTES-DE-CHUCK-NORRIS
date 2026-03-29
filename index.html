@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="imagenes/chuck-icon.png" type="image/png">
+    <title>Chistes de Chuck Norris</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Black+Ops+One&family=A
+nton&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="contenedor-cabecera">
+            <div class="texto-logo">
+                <h1>Chistes aprobados por Chuck Norris</h1>
+                <p class="subtitulo-logo">No son chistes, son hechos</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="contenido-principal">
+            <div class="tarjeta-chiste-chuck">
+                <div class="tarjeta-chiste-cabecera">
+                    <i class="fas fa-star estrella"></i>
+                    <h2>Chiste de Chuck Norris</h2>
+                    <i class="fas fa-star estrella"></i>
+                </div>
+                <div class="contenedor-imagen-chuck">
+                    <img src="imagenes/sealofapproval.png" alt="Chuck-icon" class="imagen-chuck">
+                </div>
+                <div class="contenedor-chiste">
+                    <div class="chiste-texto">
+                        Selecciona una categoría y haz clic en "Obtener chiste" o haz clic en "Chiste aleatorio"
+                    </div>
+                </div>
+                <div class="elementos-control-chiste">
+                    <div class="contenedor-categorias">
+                        <p class="chiste-texto"><i class="fas fa-list"></i> SELECCIONA UNA CATEGORÍA:</p>
+                    </div>
+                    <div class="contenedor-categorias">
+                        <select id="categoria" class="categoria-select">
+                        </select>
+
+                        <button class="boton-obtener-chiste">Obtener chiste</button>
+                        <div class="elementos-control-chiste-extra">
+                            <button class="mini-boton aleatorio"><i class="fas fa-random"></i> Chiste aleatorio</button>
+                            <button class="mini-boton copiar"><i class="fas fa-copy"></i> Copiar chiste</button>
+                            <div class="contenedor-contador-chistes"><i class="fas fa-trophy"></i> Chistes obtenidos: 0</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="contenido-footer">
+            <div class="seccion-footer">
+                <h4><i class="fas fa-dumbbell"></i> Ejercicio 01UD 04</h4>
+                <p>Lenguajes de marcas y sistemas de gestión de información</p>
+            </div>
+            <div class="seccion-footer">
+
+                <h4><i class="fas fa-user-ninja"></i>AUTOR</h4>
+                <p class="nombre-autor">👉 Samuel Ruiz Martin 👈</p>
+                <p>Declaro que no he usado IA en el proyecto. Este código fue escrito bajo la atenta mirada de Chuck
+                    Norris,
+                    cualquier similitud con IA es pura coincidencia... y miedo.</p>
+            </div>
+        </div>
+        <div class="derechosautor-footer">
+            <p>Chuck Norris no necesita derechos de autor, pero nosotros sí</p>
+        </div>
+    </footer>
+    <script src="/js/javascript.js"></script>
+</body>
+
+</html>
