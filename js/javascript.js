@@ -8,16 +8,26 @@ const botonCopiar = document.querySelector("#copiar");
 const textoChiste = document.querySelector(".chiste-texto");
 const contador = document.querySelector("#contador");
 
+/**
+ * @brief Inicializa la aplicación al cargar la página.
+ * Esta función se ejecuta cuando el DOM ha sido completamente cargado.
+ * Realiza las siguientes
+ * acciones:
+ * 1. Llama a la función obtenerCategorias() para cargar las categorías de chistes.
+ * 2. Configura los event listeners para los botones de la interfaz:
+ *    - Botón "aleatorio": Al hacer clic, llama a la función chisteRandom() para obtener un chiste aleatorio.
+ *    - Botón "copiar": Al hacer clic, llama a la función copiarChiste() para copiar el chiste actual al portapapeles.
+ *    - Botón "obtener": Al hacer clic, obtiene la categoría seleccionada y llama a la función chisteCategoria() para obtener un chiste de esa categoría.
+ * 3. Configura el event listener para el select de categorías para mostrar la categoría seleccionada en la consola.
+ */
 document.addEventListener("DOMContentLoaded", () => {
     console.log("La página ha cargado");
     obtenerCategorias();
-
 
     botonAleatorio.addEventListener("click", () => {
         console.log("Botón aleatorio clicado");
         chisteRandom(textoChiste);
     });
-
 
     botonCopiar.addEventListener("click", () => {
         console.log("Botón copiar clicado");
@@ -78,7 +88,12 @@ function obtenerErrorAleatorio() {
     return errores[indiceAleatorio];
 }
 
-// Función para copiar el chiste al portapapeles
+/**
+ * @brief Copia el chiste actual al portapapeles.
+ * Esta función obtiene el texto del chiste mostrado en la interfaz y lo copia al portapapeles utilizando la API de Clipboard.
+ * - Si el chiste se copia correctamente, muestra un mensaje de éxito en la consola y una alerta al usuario.
+ * - Si ocurre un error al copiar el chiste, muestra una alerta al usuario.
+ */
 function copiarChiste() {
 
     const chisteTexto = textoChiste.textContent;
@@ -89,14 +104,21 @@ function copiarChiste() {
                 alert("Chiste copiado al portapapeles");
             })
             .catch(() => {
-                textoChiste.textContent = obtenerErrorAleatorio();
+                alert("El chiste intento copiarse... pero Chuck Norris lo detuvo.");
             });
     } else {
         console.warn("No hay chiste para copiar");
     }
 }
 
-// Función para obtener un chiste aleatorio de la API de Chuck Norris
+/**
+ * @brief Obtiene un chiste aleatorio desde el endpoint correspondiente.
+ * Esta función realiza una petición fetch al endpoint de chistes aleatorios, valida la respuesta y actualiza el texto del chiste en la interfaz.
+ * - Si la petición es exitosa, muestra el chiste obtenido y actualiza el contador de chistes obtenidos.
+ * - Si ocurre un error al obtener el chiste, muestra un mensaje de error aleatorio en la interfaz y deshabilita el botón de copiar.
+ * @param {HTMLElement} textoChiste - El elemento HTML donde se mostrará el chiste obtenido.
+ * @see obtenerErrorAleatorio @see actualizarContador
+ */
 function chisteRandom(textoChiste) {
     const url = new URL('https://api.chucknorris.io/jokes/random');
     fetch(url)
@@ -121,7 +143,6 @@ function chisteRandom(textoChiste) {
  * @see obtenerErrorAleatorio
  */
 function obtenerCategorias() {
-
     const url = new URL('https://api.chucknorris.io/jokes/categories');
     fetch(url)
         .then((response) => response.json())
@@ -146,6 +167,12 @@ function obtenerCategorias() {
         });
 }
 
+/**
+ * @brief Configura el event listener para el select de categorías.
+ * Esta función agrega un event listener al elemento <select> de categorías para detectar cambios en la selección.
+ * Cada vez que el usuario selecciona una categoría diferente, se muestra la categoría seleccionada en la consola.
+ * @see obtenerCategorias
+ */
 function configurarSelectCategoria() {
     selectCategoria.addEventListener("change", () => {
         const categoriaSeleccionada = selectCategoria.value;
@@ -170,7 +197,11 @@ function chisteCategoria(categoria, textoChiste) {
         });
 }
 
-// Función para actualizar el contador de chistes obtenidos
+/**
+ * @brief Actualiza el contador de chistes obtenidos.
+ * Esta función incrementa el contador de chistes obtenidos cada vez que se obtiene un nuevo chiste exitosamente.
+ * Luego, actualiza el texto del elemento HTML que muestra el contador para reflejar el número actual de chistes obtenidos.
+ */
 function actualizarContador() {
     contadorChistes++;
     contador.textContent = `Chistes obtenidos: ${contadorChistes}`;
